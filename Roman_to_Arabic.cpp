@@ -1,4 +1,3 @@
-
 /*
 * Purpose     : Roman numerals to Arabic Translator
 * Author      : Khaled Waleed Salah / ID : 20210127
@@ -139,13 +138,18 @@ int is_valid_input(string in){
         cnt:;
     }
 
+    // here we sort the sequence of numbers and check if the original is sorted 
     vector<int> sorted_sequence = values_in_sequence;
     sort(sorted_sequence.begin(), sorted_sequence.end());
     reverse(sorted_sequence.begin(), sorted_sequence.end());
 
     if(sorted_sequence == values_in_sequence){
+        // if data equals the sorted version of it then that means that the original was sorted !
+        // by extension there is no invalid number like IIV, because the first I will be 1 while the second
+        // will be 4 , so the sequence is 1 , 4 which is not sorted, so we reject the input (IIV in that case).
         return 0;
     }else{
+        // if they are not equal clear the vectors so they don't make the next input fulty, to give the user anther chance
         sorted_sequence.clear();
         values_in_sequence.clear();
         return 3;
